@@ -1,4 +1,5 @@
 {
     "python.defaultInterpreterPath": "/Users/masumi/.local/share/virtualenvs/storefront-rYmU1Qqn/bin/python",
     "python-envs.pythonProjects": [],
+    "python-envs.defaultEnvManager": "ms-python.python:pipenv",
 }
