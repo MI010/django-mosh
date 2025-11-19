@@ -4,13 +4,12 @@ from django.db import models
 class Product(models.Model):
     # sku = models.CharField(max_length=255, primary_key=True)
     title = models.CharField(max_length=255)
-    slug = models.SlugField()
     description = models.TextField()
     unit_price = models.DecimalField(max_digits=6, decimal_places=2)
     inventory = models.IntegerField()
     last_updated = models.DateTimeField(auto_now=True)
-    collelction = models.ForeignKey('Collection', on_delete=models.PROTECT)
-    promotions = models.ManyToManyField('Promotion')
+    collection = models.ForeignKey('Collection', on_delete=models.PROTECT)
+    slug = models.SlugField()
 
 
 class Customer(models.Model):
@@ -53,10 +52,10 @@ class Collection(models.Model):
     featured_product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True, related_name='+')   
 
 class OrderItem(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.PROTECT)
-    product = models.ForeignKey(Product, on_delete=models.PROTECT)
     quantity = models.PositiveSmallIntegerField()
     unit_price = models.DecimalField(max_digits=6, decimal_places=2)
+    order = models.ForeignKey(Order, on_delete=models.PROTECT)
+    product= models.ForeignKey(Product, on_delete=models.PROTECT)
 
 class Cart(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
