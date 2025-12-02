@@ -38,7 +38,8 @@ def say_hello(request):
     # )
 
     #Products : inventory=unit_price
-    queryset = Product.objects.filter(inventory=F('unit_price'))
-
+    # queryset = Product.objects.filter(inventory=F('unit_price'))
+    # queryset = Product.objects.order_by('title')
+    queryset = Product.objects.all()[:5]
 
     return render(request, "hello.html", {'name': 'Masum', 'products': list(queryset)})
