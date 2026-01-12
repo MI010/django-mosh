@@ -94,7 +94,7 @@ DATABASES = {
         'NAME': 'storefront',
         'HOST': 'localhost',
         'USER': 'root',
-        'PASSWORD': "MySQL***"
+        'PASSWORD': "MySQL@10"
     }
 }
 

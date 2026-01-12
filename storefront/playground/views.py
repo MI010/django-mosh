@@ -46,7 +46,10 @@ def say_hello(request):
     # queryset = Product.objects.values_list('id','title', 'collection__title')
 
     # write a query to select products that have been ordered and sort them by title
-    queryset = Product.objects.filter(id__in=OrderItem.objects.values('product_id').distinct()).order_by('title')   
+    # queryset = Product.objects.filter(id__in=OrderItem.objects.values('product_id').distinct()).order_by('title')   
+
+    # queryset = Product.objects.only('id','title')
+    queryset = Product.objects.defer('description')
 
 
     return render(request, "hello.html", {'name': 'Masum', 'products': list(queryset)})
