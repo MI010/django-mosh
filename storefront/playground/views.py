@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from store.models import Product,OrderItem
+from store.models import Order, Product,OrderItem
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q, F
 
@@ -49,7 +49,9 @@ def say_hello(request):
     # queryset = Product.objects.filter(id__in=OrderItem.objects.values('product_id').distinct()).order_by('title')   
 
     # queryset = Product.objects.only('id','title')
-    queryset = Product.objects.defer('description')
+    # 
+    # queryset = Product.objects.select_related('collection').all()
+    queryset = Order.objects.select_related('customer').order_by('-placed_at')[:5]
 
 
-    return render(request, "hello.html", {'name': 'Masum', 'products': list(queryset)})
+    return render(request, "hello.html", {'name': 'Masum', 'orders': list(queryset)})
